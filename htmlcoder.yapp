@@ -1,0 +1,26 @@
+{
+  "appId": "com.yos.htmlcoder",
+  "name": "HTML Coder",
+  "version": "1.0.0",
+  "minOSVersion": "0.1.0",
+  "maxOSVersion": null,
+  "developer": "Y-OS Developers",
+  "category": "developer",
+  "description": "HTML code editor with live preview support. Write HTML, CSS, and JavaScript.",
+  "icon": "<svg viewBox=\"0 0 100 100\"><rect x=\"18\" y=\"18\" width=\"64\" height=\"64\" rx=\"8\" fill=\"#2c2c2c\" stroke=\"#3a3a3a\" stroke-width=\"2\"/><text x=\"50\" y=\"60\" font-family=\"monospace\" font-weight=\"bold\" font-size=\"26\" fill=\"#00e676\" text-anchor=\"middle\">&lt;/&gt;</text></svg>",
+  "window": {
+    "width": 600,
+    "height": 500,
+    "resizable": true,
+    "hasMinimize": true,
+    "hasMaximize": true,
+    "defaultPosition": {
+      "top": 140,
+      "left": 400
+    }
+  },
+  "permissions": ["storage"],
+  "html": "<div style=\"display:flex;flex-direction:column;height:100%;\"><div class=\"coder-toolbar\" style=\"height:35px;background:#e0e0e0;border-bottom:1px solid #999;display:flex;align-items:center;padding:0 10px;gap:8px;\"><button id=\"coder-run-btn\" class=\"coder-btn\">▶ Run</button><button id=\"coder-dl-btn\" class=\"coder-btn\">⬇ Download</button><button id=\"coder-clear-btn\" class=\"coder-btn\">Clear</button><span style=\"margin-left:auto;font-size:11px;color:#666;font-style:italic;\">HTML, CSS & JavaScript supported</span></div><textarea id=\"coder-input\" class=\"coder-editor\" spellcheck=\"false\" style=\"flex-grow:1;width:100%;background:#1e1e1e;color:#d4d4d4;border:none;font-family:'Consolas','Monaco','Courier New',monospace;font-size:13px;padding:15px;box-sizing:border-box;resize:none;outline:none;line-height:1.6;\"></textarea></div>",
+  "css": ".coder-btn{padding:5px 12px;background:linear-gradient(to bottom,#fff,#ddd);border:1px solid #999;border-radius:4px;cursor:pointer;font-size:11px;font-weight:bold;color:#333}.coder-btn:active{background:#ccc}.coder-editor::-webkit-scrollbar{width:12px}.coder-editor::-webkit-scrollbar-track{background:#2d2d2d}.coder-editor::-webkit-scrollbar-thumb{background:#555;border-radius:6px}.coder-editor::-webkit-scrollbar-thumb:hover{background:#777}",
+  "js": "(function(container){const runBtn=container.querySelector('#coder-run-btn');const dlBtn=container.querySelector('#coder-dl-btn');const clearBtn=container.querySelector('#coder-clear-btn');const input=container.querySelector('#coder-input');const storageKey='htmlcoder-content';const savedCode=localStorage.getItem(storageKey);if(savedCode){input.value=savedCode}input.addEventListener('input',()=>{localStorage.setItem(storageKey,input.value)});runBtn.addEventListener('click',()=>{const previewWin=window.open('','Preview','width=600,height=500');previewWin.document.open();previewWin.document.write(input.value);previewWin.document.close()});dlBtn.addEventListener('click',()=>{const blob=new Blob([input.value],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='index.html';a.click();URL.revokeObjectURL(url)});if(clearBtn){clearBtn.addEventListener('click',()=>{if(confirm('Clear all code?')){input.value='';localStorage.removeItem(storageKey)}})}})"
+}
